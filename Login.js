@@ -11,7 +11,7 @@ export default function Login() {
         e.preventDefault();
         setStatusMessage("Authenticating...");
 
-        // Post login credentials directly to our new Django JWT endpoint
+        
         fetch("http://127.0.0.1:8000/auth/login/", {
             method: "POST",
             headers: {
@@ -29,7 +29,7 @@ export default function Login() {
             .then((data) => {
                 // Save both the access token and the raw username in local storage
                 localStorage.setItem("token", data.access);
-                localStorage.setItem("username", data.username); // <-- ADD THIS
+                localStorage.setItem("username", data.username); 
                 setStatusMessage("Login successful! Redirecting...");
                 
                 setTimeout(() => {
