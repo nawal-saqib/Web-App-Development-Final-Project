@@ -17,7 +17,7 @@ export default function App() {
         } else {
             setCurrentUser(null);
         }
-    }, [location]); // Triggers a re-check automatically on every page switch!
+    }, [location]); // Triggers a re-check automatically on every page switch
 
     const handleLogOut = () => {
         localStorage.removeItem("token");
