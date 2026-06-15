@@ -29,7 +29,7 @@ export default function MovieDetail() {
             .catch(err => setError(err.message))
 
         // 3. Fetch this specific logged-in user's previous rating record
-        // Inside your useEffect block (Fetch this specific logged-in user's previous rating)
+        // Inside the useEffect block (Fetch this specific logged-in user's previous rating)
         fetch(`http://127.0.0.1:8000/movies/${id}/my-rating/`, {
             headers: {
                 "Authorization": savedToken ? `Bearer ${savedToken}` : "",
@@ -37,7 +37,7 @@ export default function MovieDetail() {
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
-                    // Token is dead! Flush it.
+                    // Token is dead. Flush it.
                     localStorage.removeItem("token");
                     localStorage.removeItem("username");
                     setUserRating(0);
@@ -61,7 +61,7 @@ export default function MovieDetail() {
             .then(data => setRecommendations(data))
             .catch(err => console.error("Recs error:", err))
             
-    }, [id]) // <-- Telling React to rerun this entire script whenever the URL ID parameter changes
+    }, [id]) // Tell React to rerun this entire script whenever the URL ID parameter changes
 
     // Handle sending ratings to Django database
     const handleRatingSubmit = (score) => {
@@ -88,7 +88,7 @@ export default function MovieDetail() {
                 setRatingStatus("Rating saved successfully!")
                 return fetch(`http://127.0.0.1:8000/movies/${id}/recommendations/`)
             } else if (res.status === 401 || res.status === 403) {
-                // --- FIX: Flush the dead session strings immediately ---
+                // --- Flush the dead session strings immediately ---
                 localStorage.removeItem("token");
                 localStorage.removeItem("username");
                 
